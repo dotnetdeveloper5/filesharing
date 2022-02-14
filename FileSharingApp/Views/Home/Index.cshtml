@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h2 class="text-center my-4">Search</h2>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <form asp-controller="Uploads" asp-action="Results">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" name="term" placeholder="File Name" aria-label="File Name" aria-describedby="button-addon2">
+                    <button class="btn btn-outline-dark" type="submit" id="button-addon2">Search</button>
+                </div>
+            </form>
+            <div class="col-md-12 text-center" style="margin-top:40px">
+                <h2>
+                    Popular Downloads
+                </h2>
+                <hr />
+                <table class="table">
+                    <tbody>
+                        @foreach(var item in ViewBag.Popular)
+                        {
+                            <tr>
+                                <td><img src="~/Uploads/@item.FileName" class="img-thumbnail" width="60px" height="40px"/></td>
+                                <td>@item.OriginalFileName</td>
+                                <td>Downloads: @item.DownloadCount</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

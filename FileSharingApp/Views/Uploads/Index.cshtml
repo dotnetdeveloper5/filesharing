@@ -1,0 +1,67 @@
+﻿@model IEnumerable<FileSharingApp.Models.UploadViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+
+    var imagesContentTypes = new[] { "image/png", "image/jpg", "image/jpeg"};
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FileName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Size)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContentType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UploadDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OriginalFileName)
+                @if(imagesContentTypes.Contains(item.ContentType))
+                {
+                    <img src="~/Uploads/@item.FileName" width="70" height="70" class="img-thumbnail" />
+                }
+            </td>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Size)*@
+                @{ 
+                        var size = (item.Size / 1024);
+                        if (size < 1024)
+                        {
+                            <span>@Math.Floor(size) KB</span>
+                        }
+                        else {
+                        <span>@(Math.Floor(size) / 1024) MB</span>
+                        }
+                    }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContentType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UploadDate)
+            </td>
+            <td>
+                @Html.ActionLink("Delete", "Delete", new {  id=item.Id  })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

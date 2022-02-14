@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewData["Title"] = "ConfirmEmail";
+}
+
+@{       
+    if (!ViewContext.ModelState.IsValid)
+    {
+        <div asp-validation-summary="ModelOnly" class="alert alert-danger text-danger"></div> 
+    }
+}
+

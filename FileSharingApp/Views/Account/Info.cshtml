@@ -1,0 +1,59 @@
+﻿@model FileSharingApp.Models.UserViewModel
+@*@inject IViewLocalizer Localizer*@
+
+
+
+<div class="container">
+    <div class="row text-center">
+        @{
+            if (!ViewContext.ModelState.IsValid)
+            {
+                <div asp-validation-summary="ModelOnly" class="text-danger alert alert-danger w-100"></div>
+            }
+        }
+    </div>
+    <h2 class="text-center">Info</h2>
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-4">
+            <form asp-action="Register">
+                <div class="form-group">
+
+                    <input type="text" asp-for="FirstName" class="form-control" placeholder="First Name" />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+
+                    <input type="text" asp-for="LastName" class="form-control" placeholder="Last Name" />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+
+                    <input asp-for="Email" class="form-control" placeholder="Email" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Update Information" class="btn btn-dark w-100" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+@{
+    if (Model.HasPassword)
+    {
+
+        <partial name="_ChangePasswordPartial" model="new ChangePasswordViewModel()" />
+    }
+    else
+    {
+        <partial name="_AddPasswordPartial" model="new AddPasswordViewModel()" />
+    }
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
