@@ -58,6 +58,9 @@
                         <li class="nav-item mr-5 @(Context.Request.Path.Value.ToLower() == "/home/privacy" ? "active" : "")">
                             <a class="nav-link" style="color:#6a6a6a" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item mr-5 @(Context.Request.Path.Value.ToLower() == "/home/privacy" ? "active" : "")">
+                            <a class="nav-link" style="color:#6a6a6a" asp-area="Admin" asp-controller="Home" asp-action="Index">Dashboard</a>
+                        </li>
                         <li class="nav-item mr-5 @(Context.Request.Path.Value.ToLower() == "/uploads/browse" ? "active" : "")">
                             <a class="nav-link" style="color:#6a6a6a" asp-area="" asp-controller="Uploads" asp-action="Browse">Browse</a>
                         </li>
