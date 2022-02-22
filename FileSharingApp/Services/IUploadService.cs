@@ -12,7 +12,7 @@ namespace FileSharingApp.Services
         IQueryable<UploadViewModel> GetBy(string userId);
         IQueryable<UploadViewModel> Search(string term);
         Task Create(InputUpload model);
-        Task<UploadViewModel> Find(string fileName);
+        Task<UploadViewModel> FindAsync(string fileName);
         Task<UploadViewModel> Find(string id, string userId);
         Task Delete(string id, string userId);
     }

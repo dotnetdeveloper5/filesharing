@@ -80,6 +80,23 @@ namespace FileSharingApp.Controllers
                 }
                 return RedirectToAction("Login");
             }
+
+            if(info.Principal.HasClaim(c => c.Type == ClaimTypes.Email))
+            {
+                var email = info.Principal.FindFirstValue(ClaimTypes.Email);
+                var existedUser = await userManager.FindByEmailAsync(email);
+                if(existedUser == null)
+                {
+                    TempData["Error"] = "Invalid Email or Password!";
+                    return RedirectToAction("Login");
+                }
+                if (existedUser.IsBlocked)
+                {
+                    await signInManager.SignOutAsync();
+                    TempData["Error"] = "This account has been blocked!";
+                    return RedirectToAction("Login");
+                }
+            }
             return RedirectToAction("Index", "Home");
         }
         public IActionResult Index()
@@ -98,17 +115,35 @@ namespace FileSharingApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, true, true);
-                if (result.Succeeded)
+                var existedUser = await userManager.FindByEmailAsync(model.Email);
+                if(existedUser == null)
                 {
-                    if (!string.IsNullOrEmpty(returnUrl))
+                    TempData["Error"] = "Incorrect Email or password";
+                    return View(model);
+                }
+                if (!existedUser.IsBlocked)
+                {
+                    var result = await signInManager.PasswordSignInAsync(model.Email, model.Password, true, false);
+                    
+                    if (result.Succeeded)
                     {
-                        return LocalRedirect(returnUrl);
+                        
+                        if (!string.IsNullOrEmpty(returnUrl))
+                        {
+                            return LocalRedirect(returnUrl);
+                        }
+                        return RedirectToAction("Create", "Uploads");
                     }
-                    return RedirectToAction("Create", "Uploads");
-                }else if (result.IsNotAllowed)
+                    else if (result.IsNotAllowed)
+                    {
+
+                        TempData["Error"] = _stringLocalizer["RequireEmailConfirmation"]?.Value;
+
+                    } 
+                }
+                else
                 {
-                    TempData["Error"] = _stringLocalizer["RequireEmailConfirmation"]?.Value;
+                    TempData["Error"] = "This account has been blocked!";
                 }
             }
             return View(model);

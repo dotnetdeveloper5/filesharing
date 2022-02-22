@@ -1,5 +1,5 @@
 ﻿@model FileSharingApp.Models.UserViewModel
-@*@inject IViewLocalizer Localizer*@
+@inject IViewLocalizer Localizer
 
 
 
@@ -12,7 +12,7 @@
             }
         }
     </div>
-    <h2 class="text-center">Info</h2>
+    <h2 class="text-center">@Localizer["Info"]</h2>
 
     <div class="row justify-content-center">
 
@@ -34,7 +34,7 @@
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Update Information" class="btn btn-dark w-100" />
+                    <input type="submit" value="Save" class="btn btn-outline-primary w-100" />
                 </div>
             </form>
         </div>

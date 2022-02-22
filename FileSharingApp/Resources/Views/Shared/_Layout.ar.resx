@@ -117,13 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Browse" xml:space="preserve">
+    <value>تصفح</value>
+  </data>
   <data name="ChangePasswordMessage" xml:space="preserve">
     <value>تم تغيير كلمة المرور بنجاح! يمكنك تسجيل الدخول الان</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>لوحة التحكم</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>الرئيسية</value>
   </data>
+  <data name="Logout" xml:space="preserve">
+    <value>تسجيل الخروج</value>
+  </data>
+  <data name="Popular" xml:space="preserve">
+    <value>اكثر التحميلات</value>
+  </data>
+  <data name="Privacy" xml:space="preserve">
+    <value>الخصوصية</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>بياناتي</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>بحث</value>
+  </data>
+  <data name="Share" xml:space="preserve">
+    <value>شارك</value>
+  </data>
   <data name="SuccessMessage" xml:space="preserve">
     <value>تمت العملية بنجاح!</value>
+  </data>
+  <data name="Uploads" xml:space="preserve">
+    <value>التحميلات</value>
   </data>
 </root>

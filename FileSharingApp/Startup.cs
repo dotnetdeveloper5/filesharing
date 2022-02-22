@@ -1,5 +1,8 @@
+using FileSharingApp.Areas.Admin;
+using FileSharingApp.Areas.Admin.Services;
 using FileSharingApp.Data;
 using FileSharingApp.Helpers.Mail;
+using FileSharingApp.Hubs;
 using FileSharingApp.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -47,7 +50,9 @@ namespace FileSharingApp
                 op.ResourcesPath = "Resources"; 
             });
             services.AddTransient<IMailHelper, MailHelper>();
+            services.AddAdminService();
             services.AddLocalization();
+            services.AddSignalR();
             services.AddTransient<IUploadService, UploadService>();
             services.AddAutoMapper(typeof(Startup));
             services.AddAuthentication().AddFacebook(options =>
@@ -101,6 +106,9 @@ namespace FileSharingApp
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapHub<NotificationHub>("/notify");
+
             });
         }
     }

@@ -99,11 +99,11 @@ namespace FileSharingApp.Services
             return result;
         }
 
-        public async Task<UploadViewModel> Find(string id)
+        public async Task<UploadViewModel> FindAsync(string fileName)
         {
-            var selectedUpload = await _db.Uploads.FindAsync(id);
+            var selectedUpload = await _db.Uploads.FindAsync(fileName);
             var mappedObject = _mapper.Map<UploadViewModel>(selectedUpload);
-            if (selectedUpload != null)
+            if (mappedObject != null)
             {
                 // AutoMapper
                 return mappedObject;

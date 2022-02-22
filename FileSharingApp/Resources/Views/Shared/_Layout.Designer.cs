@@ -61,11 +61,29 @@ namespace FileSharingApp.Resources.Views.Shared {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Browse.
+        /// </summary>
+        public static string Browse {
+            get {
+                return ResourceManager.GetString("Browse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password Changed Successfully! Please Login again.
         /// </summary>
         public static string ChangePasswordMessage {
             get {
                 return ResourceManager.GetString("ChangePasswordMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dashboard.
+        /// </summary>
+        public static string Dashboard {
+            get {
+                return ResourceManager.GetString("Dashboard", resourceCulture);
             }
         }
         
@@ -79,11 +97,65 @@ namespace FileSharingApp.Resources.Views.Shared {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Logout.
+        /// </summary>
+        public static string Logout {
+            get {
+                return ResourceManager.GetString("Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Popular Downloads.
+        /// </summary>
+        public static string Popular {
+            get {
+                return ResourceManager.GetString("Popular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Privacy.
+        /// </summary>
+        public static string Privacy {
+            get {
+                return ResourceManager.GetString("Privacy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile.
+        /// </summary>
+        public static string Profile {
+            get {
+                return ResourceManager.GetString("Profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You must confirm your email!.
         /// </summary>
         public static string RequireEmailConfirmation {
             get {
                 return ResourceManager.GetString("RequireEmailConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Share.
+        /// </summary>
+        public static string Share {
+            get {
+                return ResourceManager.GetString("Share", resourceCulture);
             }
         }
         
@@ -102,6 +174,15 @@ namespace FileSharingApp.Resources.Views.Shared {
         public static string SuccessMessage {
             get {
                 return ResourceManager.GetString("SuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uploads.
+        /// </summary>
+        public static string Uploads {
+            get {
+                return ResourceManager.GetString("Uploads", resourceCulture);
             }
         }
     }

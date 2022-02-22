@@ -1,9 +1,12 @@
 ﻿using FileSharingApp.Data;
 using FileSharingApp.Helpers.Mail;
+using FileSharingApp.Hubs;
 using FileSharingApp.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -19,14 +22,18 @@ namespace FileSharingApp.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IMailHelper _mailHelper;
+        private readonly IHubContext<NotificationHub> _notificationHub;
+        private readonly UserManager<ApplicationUser> _userManager;
 
         public ApplicationDbContext _db { get; }
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context, IMailHelper mailHelper)
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context, IMailHelper mailHelper, IHubContext<NotificationHub> notificationHub, UserManager<ApplicationUser> userManager)
         {
             _logger = logger;
             _db = context;
             _mailHelper = mailHelper;
+            _notificationHub = notificationHub;
+            _userManager = userManager;
         }
 
         public IActionResult SetCulture(string lang)
@@ -119,6 +126,14 @@ namespace FileSharingApp.Controllers
                     Body = sb.ToString()
                 });
 
+                var adminUsers = await _userManager.GetUsersInRoleAsync(UserRoles.Admin);
+                var adminIds = adminUsers.Select(u => u.Id);
+                if (adminUsers.Any())
+                {
+                    await _notificationHub.Clients.Users(adminIds).SendAsync("RecievedNotification", "You have unread message");
+                }
+
+                
 
                 return RedirectToAction("Contact");
             }

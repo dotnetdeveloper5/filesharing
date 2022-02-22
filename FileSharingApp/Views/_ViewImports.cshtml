@@ -1,3 +1,11 @@
-﻿@using FileSharingApp
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Localization
+@inject IViewLocalizer Localizer
+@{
+    var reqCulture = Context.Features.Get<IRequestCultureFeature>();
+    var culture = reqCulture.RequestCulture.Culture.Name;
+    var isArabic = culture == "ar-SA";
+}
+@using FileSharingApp
 @using FileSharingApp.Models
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

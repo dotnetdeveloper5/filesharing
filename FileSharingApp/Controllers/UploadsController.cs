@@ -81,7 +81,7 @@ namespace FileSharingApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Download(string fileName)
         {
-            var selectedFile = await uploadService.Find(fileName);
+            var selectedFile = await _db.Uploads.FirstOrDefaultAsync(u => u.FileName == fileName);
             if(selectedFile == null)
             {
                 return NotFound();

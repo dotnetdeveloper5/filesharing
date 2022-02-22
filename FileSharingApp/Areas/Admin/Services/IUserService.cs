@@ -11,8 +11,9 @@ namespace FileSharingApp.Areas.Admin.Services
         IQueryable<AdminUserViewModel> GetAll();
         IQueryable<AdminUserViewModel> GetBlockedUsers();
         IQueryable<AdminUserViewModel> Search(string term);
-        Task<OperationResult> BlockUser(string userId);
+        Task<OperationResult> ToggleBlockUser(string userId);
         Task<int> UserRegisterationCount();
         Task<int> UserRegisterationCount(int month);
+        Task InitializeAsync();
     }
 }
